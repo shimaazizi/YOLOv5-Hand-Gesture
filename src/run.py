@@ -15,7 +15,8 @@ def create_text_file(image_path, output_directory):
     try:
         filename = os.path.splitext(os.path.basename(image_path))[0]
         txt_path = os.path.join(output_directory, filename + ".txt")
-        print(f"Saving text file: {txt_path}")
+        print(f"Creating text file for image: {image_path}")  # Add debug print statement
+        print(f"Text file path: {txt_path}")  # Add debug print statement
 
         with open(txt_path, "w") as txt_file:
             image = Image.open(image_path)
@@ -26,6 +27,7 @@ def create_text_file(image_path, output_directory):
                 width = (box[2] - box[0]) / image.width
                 height = (box[3] - box[1]) / image.height
                 txt_file.write(f"0 {x_center} {y_center} {width} {height}\n")
+        print("Text file created successfully.")  # Add debug print statement
     except Exception as e:
         print(f"Error creating text file: {e}")
 
@@ -33,11 +35,17 @@ def create_text_file(image_path, output_directory):
 dataset_path = "/home/shima/Dataset"
 output_directory = "/home/shima/YOLOv5-Hand-Gesture/dataset"
 
-# Iterate through each image in the dataset directory
-for filename in os.listdir(dataset_path):
-    if filename.endswith(".jpg") or filename.endswith(".png"):
-        image_path = os.path.join(dataset_path, filename)
-        print(f"Processing image: {image_path}")
-        create_text_file(image_path, output_directory)
+# Iterate through each gesture class directory
+for gesture_class in os.listdir(dataset_path):
+    gesture_class_path = os.path.join(dataset_path, gesture_class)
+    if os.path.isdir(gesture_class_path):
+        print(f"Processing gesture class: {gesture_class}")
+        # Iterate through each image in the gesture class directory
+        for filename in os.listdir(gesture_class_path):
+            if filename.endswith(".jpg") or filename.endswith(".png"):
+                image_path = os.path.join(gesture_class_path, filename)
+                print(f"Processing image: {image_path}")
+                create_text_file(image_path, output_directory)
+        print("Gesture class processing finished.")
 
 
