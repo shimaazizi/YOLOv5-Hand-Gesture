@@ -10,4 +10,6 @@ cd yolov5
 
 pip install -r requirements.txt  # install
 
+Second I create labels for my images using Roboflow Annotate
+
 
