@@ -1,5 +1,5 @@
 # YOLOv5-Hand-Gesture
-This repository is for implementing YOLOv5 for hand gesture recognition. The dataset consists of 200 images of four hand gesture classes: Fist, OpenPalm, PeaceSign, and ThumbsUp. The dataset was created by myself.
+This repository is for implementing YOLOv5 for hand gesture recognition. **The dataset consists of 200 images of four hand gesture classes: Fist, OpenPalm, PeaceSign, and ThumbsUp**. The dataset was created by myself.
 
 First, I used the Roboflow website to label my dataset and perform data augmentation, resulting in a **total of 408 images**.
 
